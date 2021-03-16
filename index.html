@@ -66,30 +66,32 @@ function numeriCasualiPc(i, contatore) {
         var i = 0;
         var contatore = 0;
 
+        var controllaNumeroPc = contenitoreNumeriPc.includes(risultatoRandom);
+
         while (i < contatore) {
 
-            var rndPc = Math.floor((Math.random() * 100) + 1);
+            var risultatoRandom = generatoreRandom(1, 100);
 
-            if(rndPc == contenitoreNumeriPc.includes){ //se la random è uguale ad un numero dentro l'array non fare niente;
+            if(risultatoRandom == controllaNumeroPc){ //se la random è uguale ad un numero dentro l'array non fare niente;
                 console.log('non fare niente');
 
             }else {// se invece non ci sono numeri dentro l'array puschiali al suo interno;
-                contenitoreNumeriPc.push(rndPc);
+                contenitoreNumeriPc.push(risultatoRandom);
                 i++;//ed incrementa di uno ad ogni giro
             }
 
         }
-        console.log(contenitoreNumeriPc, rndPc);
-        return contenitoreNumeriPc.push(rndPc);
+
 }
 var risultatoNumeriPc = numeriCasualiPc(0, 16);
+console.log(risultatoNumeriPc);
 
 
 
 
 
 
-/*function generatoreRandom(min, max) {
+function generatoreRandom(min, max) {
 
 var minRnd = min;
 var maxRnd = max - minRnd + 1;
@@ -99,8 +101,8 @@ var random1 = Math.floor(Math.random() * maxRnd) + minRnd;
 return random1;
 }
 
-var risultatoRandom = generatoreRandom(1, 100);
-console.log(risultatoRandom +' numero pc');*/
+// var risultatoRandom = generatoreRandom(1, 100);
+// console.log(risultatoRandom +' numero pc');
 
 
 
