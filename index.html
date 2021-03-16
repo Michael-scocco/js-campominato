@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Campo minato</title>
+    </head>
+    <body>
+        <!-- Il computer deve generare 16 numeri casuali tra 1 e 100.
+        I numeri non possono essere duplicati.
+        In seguito deve chiedere all’utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100.
+        L’utente non può inserire più volte lo stesso numero.
+        Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
+        La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
+        Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
+        BONUS: (da fare solo se funziona tutto il resto)
+        all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
+        con difficoltà 0 => tra 1 e 100
+        con difficoltà 1 => tra 1 e 80
+        con difficoltà 2 => tra 1 e 50
+        Consigli del giorno: :party_wizard:
+        Scriviamo prima cosa vogliamo fare passo passo in italiano, dividiamo il lavoro in micro problemi.
+        Ad esempio:
+        Di cosa ho bisogno per generare i numeri?
+        Proviamo sempre prima con dei console.log() per capire se stiamo ricevendo i dati giusti.
+        Proviamo prima con pochi numeri, inserire 86 numeri ogni volta potrebbe essere un po’ scocciante :occhiolino:
+        Le validazioni e i controlli possiamo farli anche in un secondo momento.
+        Ricordatevi che se non sappiamo quante volte dobbiamo fare una cosa ci serve… -->
+
+
+
+        step-2 chiedere all'utente di inserire 84 numeri, uno alla volta, sempre tra 1 e 100. L'utente non può inserire lo stesso numero 2 volte e non può inserire lo stesso numero 2 volte e non può inserire quello del <picture>
+                quindi fare un for che si ripete per 84 volte chiedendo all'utente numeri diversi dal Pc e non devono essere uguali al prompt
+
+        step-3 se il numero è presente nella lista dei numeri generati, la partita finisce, se non prende il numero all'interno della lista la partita continua, chiedendo all'utente altri numeri.
+
+        step-4 -->
+
+
+        <script type="text/javascript">
+
+        /*dichiarazione
+
+            function logger(num) { // var num =10
+                num = 5;
+                console.log('Esecuzione logger function ', num);
+            }
+        //Esecuzione
+        var num = 10;
+
+        console.log('prima della funzione ', num);
+
+        logger(num);
+
+        console.log('dopo funzione ', num);*/
+
+        /* step-1 il pc deve generare 16 numeri casuali tra 1 e 100.
+                quindi un for di 16 giri, con una random da 1 a 100, e li pushiamo dentro un array.*/
+
+        // var numeroPc = contenitoreNumeriPc = [i];
+
+
+function numeriCasualiPc(i, contatore) {
+
+        var contenitoreNumeriPc = [];
+
+        var i = 0;
+        var contatore = 0;
+
+        while (i < contatore) {
+
+            var rndPc = Math.floor((Math.random() * 100) + 1);
+
+            if(rndPc == contenitoreNumeriPc.includes){ //se la random è uguale ad un numero dentro l'array non fare niente;
+                console.log('non fare niente');
+
+            }else {// se invece non ci sono numeri dentro l'array puschiali al suo interno;
+                contenitoreNumeriPc.push(rndPc);
+                i++;//ed incrementa di uno ad ogni giro
+            }
+
+        }
+        console.log(contenitoreNumeriPc, rndPc);
+        return contenitoreNumeriPc.push(rndPc);
+}
+var risultatoNumeriPc = numeriCasualiPc(0, 16);
+
+
+
+
+
+
+/*function generatoreRandom(min, max) {
+
+var minRnd = min;
+var maxRnd = max - minRnd + 1;
+
+var random1 = Math.floor(Math.random() * maxRnd) + minRnd;
+
+return random1;
+}
+
+var risultatoRandom = generatoreRandom(1, 100);
+console.log(risultatoRandom +' numero pc');*/
+
+
+
+        </script>
+
+
+
+
+    </body>
+</html>
