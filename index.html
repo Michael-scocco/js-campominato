@@ -28,8 +28,7 @@
 
 
 
-        step-2 chiedere all'utente di inserire 84 numeri, uno alla volta, sempre tra 1 e 100. L'utente non può inserire lo stesso numero 2 volte e non può inserire lo stesso numero 2 volte e non può inserire quello del <picture>
-                quindi fare un for che si ripete per 84 volte chiedendo all'utente numeri diversi dal Pc e non devono essere uguali al prompt
+
 
         step-3 se il numero è presente nella lista dei numeri generati, la partita finisce, se non prende il numero all'interno della lista la partita continua, chiedendo all'utente altri numeri.
 
@@ -38,74 +37,154 @@
 
         <script type="text/javascript">
 
-        /*dichiarazione
 
-            function logger(num) { // var num =10
-                num = 5;
-                console.log('Esecuzione logger function ', num);
-            }
-        //Esecuzione
-        var num = 10;
-
-        console.log('prima della funzione ', num);
-
-        logger(num);
-
-        console.log('dopo funzione ', num);*/
-
-        /* step-1 il pc deve generare 16 numeri casuali tra 1 e 100.
-                quindi un for di 16 giri, con una random da 1 a 100, e li pushiamo dentro un array.*/
-
-        // var numeroPc = contenitoreNumeriPc = [i];
+/* step-1 il pc deve generare 16 numeri casuali tra 1 e 100.*/
+    // quindi creo una funzione, che mi crea 16 numeri casuali con una random
 
 
-function numeriCasualiPc(i, contatore) {
+    function generatoreRandom(min, max) {//funzione random;
 
-        var contenitoreNumeriPc = [];
+        var minRnd = min;
+        var maxRnd = max - minRnd + 1;
 
-        var i = 0;
-        var contatore = 0;
+        var random1 = Math.floor(Math.random() * maxRnd) + minRnd;
 
-        var controllaNumeroPc = contenitoreNumeriPc.includes(risultatoRandom);
+        return random1;
+    }//function
 
-        while (i < contatore) {
+    // var risultatoRandom = generatoreRandom(1, 100);
+    // console.log(risultatoRandom +' numero pc');
+// _____________________________________________________________funzione random
 
-            var risultatoRandom = generatoreRandom(1, 100);
+/*step-1.1, generare una funzione FINO A CHE IL VALORE DI i NON ARRIVA AL valoreContatore,
+          dove andiamo a confrontare che i numeri generati dal pc non siano ripetuti, dentro un array vuoto.
 
-            if(risultatoRandom == controllaNumeroPc){ //se la random è uguale ad un numero dentro l'array non fare niente;
+  step-1.2, SE il numero generato dalla random una volta controllato dalla proprietà INCLUDES(numero booleano), è VERO(cioè è presente nell'array)
+          non farà niente, vuol dire non inserisce numeri nell'array, quindi non puscha.
+
+  step-1.3, ALTRIMENTI, non ci sono numeri nell'array, mi puschi i numeri nell'array, incrementando sempre di 1
+
+          PASSAGGIO FINALE, METTO TUTTO IN UNA FUNZIONE DOVE VADO A GENERALIZZARE IL valoreI e valoreContatore*/
+
+    //funzione crea bombe casuali pc.
+    function randomBombsPC(valueI, valueContainer) {//PASSAGGIO FINALE, METTO TUTTO IN UNA FUNZIONE DOVE VADO A GENERALIZZARE IL valoreI e valoreContatore
+
+    var containerBombsPc = [];//array contenitore bombe.
+
+        while (valueI < valueContainer) {// step-1.1, generare una funzione FINO A CHE IL VALORE DI i NON ARRIVA AL valoreContatore,
+
+            var risultatoRandomPc = parseInt(generatoreRandom(1, 100));//funzione random creata sopra
+            console.log(containerBombsPc);
+
+            var bombCheckPc = containerBombsPc.includes(risultatoRandomPc);//creo variabile del controllo array
+
+            if(bombCheckPc){ // step-1.2, se la random è uguale ad un numero dentro l'array non fare niente;
                 console.log('non fare niente');
 
-            }else {// se invece non ci sono numeri dentro l'array puschiali al suo interno;
-                contenitoreNumeriPc.push(risultatoRandom);
-                i++;//ed incrementa di uno ad ogni giro
-            }
+            }else {//step-1.3 altrimenti non ci sono numeri dentro l'array puschiali al suo interno;
+                containerBombsPc.push(risultatoRandomPc);
+                valueI++;//ed incrementa di uno ad ogni giro, fino a quando non riempi l'array.
+            }//if
+        }//while
 
+    return containerBombsPc;
+
+    }//function                   valueI valueContainer
+    var bombsResultPc = randomBombsPC(0, 16);
+        console.log(bombsResultPc);
+// _____________________________________________________funzione randomBombsPC
+
+/*step-3
+  step-3.1, chiedere all'utente di inserire 84 numeri, uno alla volta, sempre tra 1 e 100.
+
+  step-3.2, l'utente non può inserire lo stesso numero 2 volte
+
+  step-3.3, non può inserire i stessi numeri del pc, altrimenti game over.*/
+
+
+    console.log(contenitoreNumeriUtente);
+    var i2 = 0;
+    var contatore2 = 30 - 16; //max - 16;
+    var risultato = true;
+    var contenitoreNumeriUtente = [];
+
+    while (i2 < contatore2 )  {
+
+        var numeroUtente = parseInt(prompt('inserisci il numero'));
+        console.log('numero scelto ' + numeroUtente);
+        var controllaNumeroUtente = contenitoreNumeriUtente.includes(numeroUtente);
+
+        if (numeroUtente < 1 || numeroUtente > 100 || controllaNumeroUtente) {// se è vero non fare niente
+            console.log('chiedimi un\'altro numero');
+
+        } else{
+            contenitoreNumeriUtente.push(numeroUtente);
+            console.log(risultato + ' stai vincendo');
+
+            if(bombsResultPc.includes(numeroUtente)) {// se il numero uguale all'array muori
+                risultato = false;
+                console.log(risultato + ' muori vince il pc');
+                break;
+            }else {// non serve aggiungere funzioni
+
+            }
+        }//else
+    }//while
+
+// _______________________________________________________________________________
+
+// function functionName(difficoltà) {
+//     if () {
+//
+//     }
+// }
+
+
+    /*dichiarazione
+
+        function logger(num) { // var num =10
+            num = 5;
+            console.log('Esecuzione logger function ', num);
+        }
+    //Esecuzione
+    var num = 10;
+
+    console.log('prima della funzione ', num);
+
+    logger(num);
+
+    console.log('dopo funzione ', num);*/
+
+    // var numeroPc = contenitoreNumeriPc = [i];
+
+
+    /*function numeriCasualiPc(i, contatore) {
+
+    var contenitoreNumeriPc = [];
+
+    var i = 0;
+    var contatore = 0;
+
+    var controllaNumeroPc = contenitoreNumeriPc.includes(risultatoRandom);
+
+    while (i < contatore) {
+
+        var risultatoRandom = generatoreRandom(1, 100);
+
+        if(risultatoRandom == controllaNumeroPc){ //se la random è uguale ad un numero dentro l'array non fare niente;
+            console.log('non fare niente');
+
+        }else {// se invece non ci sono numeri dentro l'array puschiali al suo interno;
+            contenitoreNumeriPc.push(risultatoRandom);
+            i++;//ed incrementa di uno ad ogni giro
         }
 
-}
-var risultatoNumeriPc = numeriCasualiPc(0, 16);
-console.log(risultatoNumeriPc + ' perchè mi dice indefinito invece che stampare il numero?');
+    }
 
-
-
-
-
-
-function generatoreRandom(min, max) {
-
-var minRnd = min;
-var maxRnd = max - minRnd + 1;
-
-var random1 = Math.floor(Math.random() * maxRnd) + minRnd;
-
-return random1;
-}
-
-// var risultatoRandom = generatoreRandom(1, 100);
-// console.log(risultatoRandom +' numero pc');
-
-
-
+    }
+    var risultatoNumeriPc = numeriCasualiPc(0, 16);
+    console.log(risultatoNumeriPc + ' perchè mi dice indefinito invece che stampare il numero?');
+    */
         </script>
 
 
